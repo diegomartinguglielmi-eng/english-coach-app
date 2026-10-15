@@ -1,3 +1,16 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+
+# El micrófono solo se permite para la propia app
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "microphone=(self)"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
